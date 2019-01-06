@@ -78,13 +78,22 @@ public class WeatherAverageCalculator {
     public Map<String, Double> getCityAndWeatherMap(List<WeatherPOJO> weatherPOJOList) {
 
         Map<String, Double> cityAndWeatherMap = new LinkedHashMap<>();
-        for (WeatherPOJO weatherPOJO : weatherPOJOList) {
+
+        // Same for loop as stream
+//        for (WeatherPOJO weatherPOJO : weatherPOJOList) {
+//            if (cityAndWeatherMap.get(weatherPOJO.getCity()) != null) {
+//                cityAndWeatherMap.put(weatherPOJO.getCity(), cityAndWeatherMap.get(weatherPOJO.getCity()) + weatherPOJO.getWeather());
+//            } else {
+//                cityAndWeatherMap.put(weatherPOJO.getCity(), weatherPOJO.getWeather());
+//            }
+//        }
+        weatherPOJOList.stream().forEach(weatherPOJO -> {
             if (cityAndWeatherMap.get(weatherPOJO.getCity()) != null) {
                 cityAndWeatherMap.put(weatherPOJO.getCity(), cityAndWeatherMap.get(weatherPOJO.getCity()) + weatherPOJO.getWeather());
             } else {
                 cityAndWeatherMap.put(weatherPOJO.getCity(), weatherPOJO.getWeather());
             }
-        }
+        });
 
         return cityAndWeatherMap;
     }
