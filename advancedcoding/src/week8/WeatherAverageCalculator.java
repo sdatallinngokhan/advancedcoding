@@ -107,10 +107,15 @@ public class WeatherAverageCalculator {
 
             printWriter.println("The average tempreatures between 01-07 January 2019");
 
-            for (String city : cityAndWeatherMap.keySet()) {
+            // same as stream
+//            for (String city : cityAndWeatherMap.keySet()) {
+//                String line = city + " " + df.format(cityAndWeatherMap.get(city) / 7);
+//                printWriter.println(line);
+//            }
+            cityAndWeatherMap.keySet().stream().forEach(city -> {
                 String line = city + " " + df.format(cityAndWeatherMap.get(city) / 7);
                 printWriter.println(line);
-            }
+            });
 
             printWriter.close();
 
