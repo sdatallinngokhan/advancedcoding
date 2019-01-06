@@ -2,6 +2,7 @@ package week8;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 public class FileWriting {
@@ -22,7 +23,7 @@ public class FileWriting {
 
             // save and close the file
             printWriter.close();
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.out.println("File path does not exist. Exception is " + e);
         }
     }
