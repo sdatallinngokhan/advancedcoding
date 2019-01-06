@@ -3,6 +3,7 @@ package week8;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class FileReading {
@@ -27,7 +28,7 @@ public class FileReading {
                 line = bufferedReader.readLine();
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -50,7 +51,7 @@ public class FileReading {
             }
 
             System.out.println(sb.toString());
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
