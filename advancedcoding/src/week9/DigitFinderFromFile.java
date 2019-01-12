@@ -26,13 +26,35 @@ public class DigitFinderFromFile {
         return sb;
     }
 
-    private StringBuilder findNumbers(String contentOfFile) {
+    private StringBuilder findNumbersOneByOne(String contentOfFile) {
         StringBuilder numbersContainer = new StringBuilder();
         for (int i = 0; i < contentOfFile.length(); i++) {
             String temp = "" + contentOfFile.charAt(i);
 
             if (temp.matches(".*\\d+.*")) {
                 numbersContainer.append(temp + " , ");
+            }
+        }
+
+        return numbersContainer;
+    }
+
+    private StringBuilder findOriginalNumbers(String contentOfFile) {
+        StringBuilder numbersContainer = new StringBuilder();
+        for (int i = 0; i < contentOfFile.length(); i++) {
+            String temp = "" + contentOfFile.charAt(i);
+
+            if (temp.matches(".*\\d+.*") || temp.equals("-")) {
+                numbersContainer.append(temp);
+                i++;
+                temp = "" + contentOfFile.charAt(i);
+                while(temp.matches(".*\\d+.*") || temp.equals("/")){
+                    numbersContainer.append(temp);
+                    i++;
+                    temp = "" + contentOfFile.charAt(i);
+                }
+
+                numbersContainer.append(" ---- ");
             }
         }
 
@@ -58,9 +80,13 @@ public class DigitFinderFromFile {
 
         StringBuilder fileContent = digitFinderFromFile.readFile(); // first step
 
-        StringBuilder numbers = digitFinderFromFile.findNumbers(fileContent.toString()); // second step
+        StringBuilder numbers = digitFinderFromFile.findNumbersOneByOne(fileContent.toString()); // second step
 
         String writingFileUrl = "/Users/gokhanpolat/Developer/tallinn3/numbers-result.txt";
         digitFinderFromFile.writeResultToFile(numbers.toString(), writingFileUrl); // third step
+
+        StringBuilder numbers2 = digitFinderFromFile.findOriginalNumbers(fileContent.toString()); // second step
+        String writingFileUrl2 = "/Users/gokhanpolat/Developer/tallinn3/numbers-result2.txt";
+        digitFinderFromFile.writeResultToFile(numbers2.toString(), writingFileUrl2); // third step
     }
 }
