@@ -12,7 +12,7 @@ import java.net.URL;
 
 public class RssFeedReaderAndWriterToFile {
 
-    public String getRssFeed(){
+    public String getRssFeed() {
         StringBuilder sb = new StringBuilder();
         try {
             String url = "http://feeds.bbci.co.uk/news/world/rss.xml";
@@ -35,7 +35,7 @@ public class RssFeedReaderAndWriterToFile {
         return sb.toString();
     }
 
-    public void writeFile(String rssNews){
+    public void writeFile(String rssNews) {
         try {
             File file = new File("/Users/gokhanpolat/Developer/tallinn3/rss.txt");
             FileWriter fileWriter = new FileWriter(file);
@@ -45,7 +45,7 @@ public class RssFeedReaderAndWriterToFile {
 
             printWriter.close();
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 
